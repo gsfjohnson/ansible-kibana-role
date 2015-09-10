@@ -5,13 +5,16 @@
     url: https://download.elastic.co/kibana/kibana/kibana-3.1.2.tar.gz
     dest: /tmp/kibana-3.1.2.tar.gz
 
-- name: mkdir
-  file: path=/var/www/html/kibana3 state=directory
-
 - name: install
   unarchive:
     src: /tmp/kibana-3.1.2.tar.gz
-    dest: /var/www/html/kibana3
+    dest: /var/www
     copy: no
     # creates: {{ kibana_dir }}/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}
+
+- name: symlink
+  file:
+    path: /var/www/html/kibana3
+    src: /var/www/kibana-3.1.2
+    state: link
 
