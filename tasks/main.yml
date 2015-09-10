@@ -1,0 +1,14 @@
+---
+
+- name: download pkg
+  get_url:
+    url: https://download.elastic.co/kibana/kibana/kibana-3.1.2.tar.gz
+    dest: /tmp/kibana-3.1.2.tar.gz
+
+- name: install
+  unarchive:
+    src: /tmp/kibana-3.1.2.tar.gz
+    dest: /var/www/html/kibana3
+    copy: no
+    # creates={{ kibana_dir }}/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}
+
