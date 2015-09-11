@@ -18,3 +18,9 @@
     src: /var/www/kibana-3.1.2
     state: link
 
+- name: get views
+  get_url:
+    url: "{{item.url}}"
+    dest: "{{item.dest}}"
+  with_items: kibana_views
+
