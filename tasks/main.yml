@@ -27,6 +27,6 @@
 - name: adjust es source
   lineinfile:
     dest: /var/www/html/kibana3/config.js
-    regexp: elasticsearch:
-    line: elasticsearch: "http://"+window.location.hostname+":8888/es"
+    regexp: "elasticsearch: "
+    line: "elasticsearch: 'http://'+window.location.hostname+':8888/es'"
 
