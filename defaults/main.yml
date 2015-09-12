@@ -1,4 +1,6 @@
 ---
 
-kibana_urls:
+kibana_views: []
+
+kibana_url: 'http://'+window.location.hostname+'/es'
 

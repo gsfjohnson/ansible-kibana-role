@@ -28,5 +28,5 @@
   lineinfile:
     dest: /var/www/html/kibana3/config.js
     regexp: "elasticsearch: "
-    line: "elasticsearch: 'http://'+window.location.hostname+':8888/es'"
+    line: "elasticsearch: {{kibana_url}},"
 
