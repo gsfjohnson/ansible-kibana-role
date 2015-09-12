@@ -21,6 +21,12 @@
 - name: get views
   get_url:
     url: "{{item.url}}"
-    dest: "{{item.dest}}"
+    dest: "/var/www/html/kibana3/app/dashboards/{{item.dest}}"
   with_items: kibana_views
+
+- name: adjust es source
+  lineinfile:
+    dest: /var/www/html/kibana3/config.js
+    regexp: elasticsearch:
+    line: elasticsearch: "http://"+window.location.hostname+":8888/es"
 
