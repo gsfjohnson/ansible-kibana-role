@@ -2,5 +2,5 @@
 
 kibana_views: []
 
-kibana_url: 'http://'+window.location.hostname+'/es'
+kibana_url: "'http://'+window.location.hostname+'/es'"
 
