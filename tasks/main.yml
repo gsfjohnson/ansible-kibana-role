@@ -18,10 +18,19 @@
     src: /var/www/kibana-3.1.2
     state: link
 
-- name: get views
+- name: get dashboards
   get_url:
     url: "{{item.url}}"
     dest: "/var/www/html/kibana3/app/dashboards/{{item.dest}}"
+  with_items: kibana_views
+
+- name: load dashboards into es
+  uri:
+    url: "http://localhost:9200/kibana-int/dashboard/{{item.dest}}"
+    method: PUT
+    body: "{{ lookup('file','/var/www/html/kibana3/app/dashboards/'+item.dest) }}"
+    body_format: raw
+    status_code: 201
   with_items: kibana_views
 
 - name: adjust es source
