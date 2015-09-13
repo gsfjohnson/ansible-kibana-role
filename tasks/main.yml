@@ -33,6 +33,12 @@
     status_code: 201
   with_items: kibana_views
 
+- name: get pages
+  get_url:
+    url: "{{item.url}}"
+    dest: "{{item.dest}}"
+  with_items: kibana_pages
+
 - name: adjust es source
   lineinfile:
     dest: /var/www/html/kibana3/config.js
