@@ -20,7 +20,7 @@
 
 - name: get gist dashboards
   get_url:
-    url: "https://gist.githubusercontent.com/{{item.user}}/{{item.gist}}/raw"
+    url: "https://gist.githubusercontent.com/{{item.gist}}/raw"
     dest: "/var/www/html/kibana3/app/dashboards/{{item.dest}}"
   with_items: kibana_gist_views
 
@@ -35,7 +35,7 @@
 
 - name: get gist pages
   get_url:
-    url: "https://gist.githubusercontent.com/{{item.user}}/{{item.gist}}/raw"
+    url: "https://gist.githubusercontent.com/{{item.gist}}/raw"
     dest: "{{item.dest}}"
   with_items: kibana_gist_pages
 
