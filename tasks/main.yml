@@ -18,11 +18,11 @@
     src: /var/www/kibana-3.1.2
     state: link
 
-- name: get dashboards
+- name: get gist dashboards
   get_url:
-    url: "{{item.url}}"
+    url: "https://gist.githubusercontent.com/{{item.user}}/{{item.gist}}/raw"
     dest: "/var/www/html/kibana3/app/dashboards/{{item.dest}}"
-  with_items: kibana_views
+  with_items: kibana_gist_views
 
 #- name: load dashboards into es
 #  uri:
@@ -33,11 +33,11 @@
 #    status_code: 201
 #  with_items: kibana_views
 
-- name: get pages
+- name: get gist pages
   get_url:
-    url: "{{item.url}}"
+    url: "https://gist.githubusercontent.com/{{item.user}}/{{item.gist}}/raw"
     dest: "{{item.dest}}"
-  with_items: kibana_pages
+  with_items: kibana_gist_pages
 
 - name: adjust es source
   lineinfile:

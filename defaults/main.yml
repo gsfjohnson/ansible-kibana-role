@@ -1,6 +1,7 @@
 ---
 
-kibana_views: []
+kibana_gist_views: []
+kibana_gist_pages: []
 
 kibana_url: "'http://'+window.location.hostname+'/es'"
 
