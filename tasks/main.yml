@@ -39,9 +39,13 @@
     dest: "{{item.dest}}"
   with_items: kibana_gist_pages
 
-- name: adjust es source
-  lineinfile:
-    dest: /var/www/html/kibana3/config.js
-    regexp: "elasticsearch: "
-    line: "elasticsearch: {{kibana_url}},"
+- name: config template
+  template:
+    src: "{{ item }}.j2"
+    dest: "/var/www/html/kibana3/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - config.js
 
