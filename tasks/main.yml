@@ -18,11 +18,20 @@
     src: /var/www/kibana-3.1.2
     state: link
 
-- name: get gist dashboards
+- name: file dashboards
+  copy:
+    src: "{{item.src}}"
+    dest: "/var/www/html/kibana3/app/dashboards/{{item.dest}}"
+  with_items: "{{kibana_views}}"
+  when: item.type is defined and item.type == 'file' and item.src is defined and item.dest is defined
+  ignore_errors: yes
+
+- name: gist dashboards
   get_url:
     url: "https://gist.githubusercontent.com/{{item.gist}}/raw"
     dest: "/var/www/html/kibana3/app/dashboards/{{item.dest}}"
-  with_items: kibana_gist_views
+  with_items: "{{kibana_views}}"
+  when: item.type is defined and item.type == 'gist' and item.gist is defined and item.dest is defined
   ignore_errors: yes
 
 #- name: load dashboards into es
@@ -34,11 +43,20 @@
 #    status_code: 201
 #  with_items: kibana_views
 
-- name: get gist pages
+- name: file pages
+  copy:
+    src: "{{item.src}}"
+    dest: "/var/www/html/{{item.dest}}"
+  with_items: "{{kibana_pages}}"
+  when: item.type is defined and item.type == 'file' and item.src is defined and item.dest is defined
+  ignore_errors: yes
+
+- name: gist pages
   get_url:
     url: "https://gist.githubusercontent.com/{{item.gist}}/raw"
     dest: "{{item.dest}}"
-  with_items: kibana_gist_pages
+  with_items: "{{kibana_pages}}"
+  when: item.type is defined and item.type == 'gist' and item.gist is defined and item.dest is defined
   ignore_errors: yes
 
 - name: config template
